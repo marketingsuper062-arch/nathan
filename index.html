@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathan - Bio</title>
+     <link rel="icon" type="image/png" href="https://res.cloudinary.com/sfxvqeay/image/upload/v1784403981/ChatGPT_Image_Jul_19_2026_02_45_46_AM_wwhkjc.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Variabel Warna */
+        :root {
+            --primary-color: #0d1212; /* Warna latar belakang hitam gelap */
+            --secondary-color: #00F0FF; /* Warna neon biru */
+            --favorite-color: #FBFFFF; /* Warna neon putih untuk bagian favorit */
+            --text-color: #f0f0f0; /* Warna teks terang */
+            --text-highlight: #00F0FF; /* Warna highlight teks */
+            --card-bg: #1a1a1a; /* Latar belakang card yang sedikit lebih terang */
+        }
+
+        /* 1. Reset Dasar dan Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Smooth Scroll untuk navigasi anchor link (misalnya saat klik 'About') */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* CSS: Mengunci scroll saat menu terbuka */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        /* Container utama untuk memastikan ada padding/margin luar */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Judul Seksi Utama */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 3rem;
+            text-shadow: 0 0 5px var(--secondary-color);
+            padding-top: 2rem;
+        }
+
+        /* ================== ANIMATIONS ================== */
+
+        /* Animasi Pulse untuk Efek Neon pada gambar profil dan elemen kartu (HIJAU) */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color); }
+            50% { box-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color); }
+            100% { box-shadow: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color); }
+        }
+        
+        /* Definisi Animasi Pulse putih */
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 5px var(--favorite-color), 0 0 10px var(--favorite-color); }
+            50% { box-shadow: 0 0 20px var(--favorite-color), 0 0 40px var(--favorite-color); }
+            100% { box-shadow: 0 0 5px var(--favorite-color), 0 0 10px var(--favorite-color); }
+        }
+
+
+        /* Animasi Gerak Latar Belakang (Partikel) */
+        @keyframes moveCircle {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 30px); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes moveSquare {
+            0% { transform: translate(0, 0) rotate(45deg); }
+            100% { transform: translate(-30px, 50px) rotate(135deg); }
+        }
+
+        /* Animasi Kursor Ketik */
+        .typing-cursor {
+            border-right: 2px solid var(--secondary-color);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary-color); }
+        }
+        
+        /* Animasi Skill Bar */
+        @keyframes fillSkill {
+            from { width: 0%; }
+            to { width: var(--skill-level); }
+        }
+
+        /* Kelas untuk Animasi Scroll Umum */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .animate-on-scroll.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animasi Khusus untuk Bagian About Me (Effect "Wow") */
+        .about-details.animate-on-scroll.show {
+            /* Lebih dramatis dan berputar sedikit */
+            transform: scale(1) rotateX(0); 
+            transition: opacity 1s ease-out, transform 1s ease-out, box-shadow 0.5s;
+            /* Tambahkan efek glow saat muncul */
+            box-shadow: 0 0 20px var(--secondary-color), 0 0 40px rgba(0, 255, 156, 0.5);
+        }
+        
+        /* Setting awal untuk elemen yang akan dianimasikan di About Me */
+        .about-details {
+            transform: translateY(50px) scale(0.95) rotateX(10deg);
+            transition-delay: 0.3s; /* Tunda sedikit agar gambar muncul duluan */
+        }
+        
+        .about-image {
+             transform: translateY(50px) scale(0.95);
+             transition-delay: 0.1s;
+        }
+        
+        /* Animasi masuk dari atas untuk Favorite Section (putih) */
+        .favorite-image.animate-on-scroll {
+             transform: translateY(-50px) scale(0.95); /* Posisi awal sedikit di atas */
+             transition-delay: 0.1s;
+        }
+        
+        .favorite-image.animate-on-scroll.show {
+            transform: translateY(0) scale(1);
+        }
+        
+        /* ================== SECTION DIVIDER (PEMBATAS) ================== */
+        .section-divider {
+            width: 80%;
+            max-width: 800px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 0 auto;
+            border-radius: 2px;
+            /* Efek Neon Glow */
+            box-shadow: 0 0 10px var(--secondary-color), 0 0 20px var(--secondary-color), 0 0 40px rgba(0, 255, 156, 0.5);
+            margin-bottom: 5rem;
+            
+            /* Animasi Khusus untuk Pembatas */
+            opacity: 0;
+            transform: scaleX(0); /* Mulai dari skala 0 (tersembunyi) */
+            transition: opacity 1s ease-out, transform 1.5s ease-out;
+        }
+
+        .section-divider.show {
+            opacity: 1;
+            transform: scaleX(1); /* Memanjang saat terlihat */
+        }
+        
+        /* Ubah warna pembatas favorit menjadi putih */
+        .favorite-divider {
+            background: var(--favorite-color);
+            box-shadow: 0 0 10px var(--favorite-color), 0 0 20px var(--favorite-color), 0 0 40px rgba(255, 0, 60, 0.5);
+        }
+
+        /* ================== NAVBAR & HAMBURGER ================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: relative; 
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        /* Desktop Navigation Links */
+        .nav-links {
+            display: flex; /* Hanya tampil di desktop */
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        /* Hamburger Button (Hanya tampil di mobile) */
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        /* Mobile Sidebar Menu (Default: Hidden) */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Sembunyikan di luar layar */
+            width: 250px;
+            height: 100%;
+            background-color: var(--primary-color);
+            padding: 2rem 1.5rem;
+            transition: right 0.3s ease-in-out;
+            z-index: 999;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            border-left: 2px solid var(--secondary-color);
+        }
+
+        .mobile-menu.open {
+            right: 0; /* Geser ke dalam layar saat terbuka */
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            border-bottom: 1px solid #1a1a1a;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--secondary-color);
+            padding-left: 10px;
+        }
+
+        /* ================== HERO SECTION ================== */
+        .hero-section {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px); 
+        }
+        
+        /* Elemen Hero akan diberi animasi, jadi kita perlu memastikan transisi tidak langsung dari opacity: 0 */
+        .hero-section .text-content > *, .hero-section .image-content > * {
+            opacity: 1; /* Jangan dianimasikan dengan observer karena ini adalah elemen pertama */
+            transition: none;
+        }
+
+        .content-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            gap: 40px;
+        }
+
+        .text-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .text-content h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+        }
+
+        .role {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            /* Pastikan kontainer peran memiliki tinggi yang cukup saat teks berubah */
+            min-height: 2rem; 
+        }
+
+        .description {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #b0b0b0;
+        }
+
+        /* Ikon Sosial */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 5px var(--secondary-color);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            box-shadow: 0 0 10px var(--secondary-color), 0 0 20px var(--secondary-color);
+        }
+
+        /* Tombol */
+        .btn-explore {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 0 10px var(--secondary-color);
+        }
+
+        .btn-explore:hover {
+            background-color: #00e68a;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--secondary-color);
+        }
+
+        /* Gambar Profil */
+        .image-content {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .profile-frame {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border: 5px solid var(--secondary-color);
+            animation: pulse 4s infinite alternate;
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        /* ================== BACKGROUND SHAPES (PARTIKEL) ================== */
+        .bg-shape {
+            position: absolute;
+            background-color: rgba(0, 255, 156, 0.2); 
+            opacity: 0.5;
+            z-index: -1;
+            pointer-events: none;
+            filter: blur(5px);
+        }
+
+        .circle-1 {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            top: 10%;
+            left: 5%;
+            background-color: rgba(0, 255, 156, 0.4);
+            animation: moveCircle 15s infinite ease-in-out;
+        }
+        .circle-2 {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            bottom: 20%;
+            right: 15%;
+            animation: moveCircle 10s infinite reverse ease-in-out;
+        }
+
+        .square-1 {
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            left: 20%;
+            animation: moveSquare 8s infinite alternate-reverse;
+        }
+        .square-2 {
+            width: 60px;
+            height: 60px;
+            bottom: 5%;
+            right: 5%;
+            animation: moveSquare 12s infinite alternate;
+        }
+
+        .triangle-1 {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid rgba(0, 255, 156, 0.3);
+            top: 35%;
+            right: 40%;
+            transform: rotate(-30deg);
+        }
+
+        /* ================== ABOUT SECTION ================== */
+        .about-section {
+            padding: 5rem 0;
+            /* Pastikan ada padding bawah yang cukup */
+            min-height: 100vh;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: flex-start; /* Sejajarkan konten ke atas */
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 400px;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px; /* Sudut sedikit melengkung */
+        }
+
+        .about-details {
+            flex: 2;
+            max-width: 800px;
+            /* Kartu neon */
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.3);
+        }
+        
+        .about-details h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .about-details p {
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        /* Kotak Skill Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .skill-box {
+            background-color: var(--primary-color);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden; /* Penting untuk bar */
+            position: relative;
+        }
+
+        /* Bar Kemajuan Skill (sekarang Hobi/Minat) */
+        .skill-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: var(--secondary-color);
+            opacity: 0.1; /* Transparan agar teks tetap terlihat */
+            transition: width 1.5s ease-out; /* Transisi halus untuk animasi */
+            animation: fillSkill 1.5s forwards; /* Animasi di load */
+            animation-play-state: paused; /* Mulai berhenti */
+            transform-origin: left;
+        }
+
+        .skill-info {
+            z-index: 1; /* Pastikan teks di atas bar */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .skill-info i {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+        }
+
+        .skill-percentage {
+            z-index: 1;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        /* Tombol Play Music */
+        .btn-music {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 0 10px var(--secondary-color);
+            cursor: pointer; /* Pastikan kursor menunjukkan itu bisa diklik */
+        }
+
+        .btn-music:hover {
+            background-color: #00e68a;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--secondary-color), 0 0 30px #00F0FF;
+        }
+        
+        .btn-music:active {
+            transform: translateY(0);
+            box-shadow: 0 0 5px var(--secondary-color);
+        }
+        
+        /* ================== FAVORITE SECTION (RED NEON) ================== */
+        .favorite-section {
+            padding: 5rem 0;
+            background-color: var(--primary-color); /* Sama dengan body */
+        }
+        
+        /* Ubah warna judul bagian favorit menjadi putih */
+        .favorite-section .section-title,
+        .favorite-details h2 {
+            color: var(--favorite-color);
+            text-shadow: 0 0 5px var(--favorite-color);
+        }
+
+        /* Ubah warna pembatas menjadi putih */
+        .favorite-divider {
+            background: var(--favorite-color);
+            box-shadow: 0 0 10px var(--favorite-color), 0 0 20px var(--favorite-color), 0 0 40px rgba(255, 0, 60, 0.5);
+        }
+
+        .favorite-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+            flex-direction: row-reverse; /* Balik urutan agar gambar di kanan */
+        }
+        
+        .favorite-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 400px;
+        }
+
+        .drose-frame {
+            width: 350px;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 5px solid var(--favorite-color);
+            /* Animasi Pulse putih */
+            animation: pulse-red 4s infinite alternate;
+        }
+        
+        .drose-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .favorite-details {
+            flex: 2;
+            max-width: 800px;
+            /* Kartu neon putih */
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid var(--favorite-color);
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
+        }
+
+
+        /* ================== MEDIA QUERIES (RESPONSIF) ================== */
+        @media (max-width: 992px) {
+            /* Sembunyikan menu desktop, tampilkan hamburger */
+            .nav-links {
+                display: none;
+            }
+            .hamburger-menu {
+                display: block;
+            }
+            
+            /* Ubah layout Hero menjadi vertikal */
+            .content-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .image-content {
+                order: -1; /* Pindahkan gambar ke atas */
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+
+            .text-content {
+                max-width: 100%;
+            }
+
+            .text-content h1 {
+                font-size: 3rem;
+            }
+
+            .role {
+                font-size: 1.2rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+            
+            /* About Section Adjustments */
+            .about-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .about-image, .about-details {
+                max-width: 100%;
+            }
+
+            .about-image img {
+                width: 80%; /* Gambar agar tidak terlalu besar di mobile */
+                max-width: 300px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr; /* Satu kolom di mobile */
+            }
+            
+            /* Favorite Section Adjustments */
+            .favorite-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .favorite-image {
+                max-width: 100%;
+                order: -1;
+            }
+            .drose-frame {
+                width: 80%; 
+                max-width: 300px;
+                height: 400px;
+            }
+            .favorite-details {
+                max-width: 100%;
+            }
+            
+            .section-divider {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .text-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-frame {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Nathan</div>
+        <nav class="nav-links">
+            <a href="#home" class="active scroll-link">Home</a>
+            <a href="#about" class="scroll-link">About</a>
+            <a href="#favorite" class="scroll-link">Fav Player</a>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#home" class="active scroll-link">Home</a>
+        <a href="#about" class="scroll-link">About</a>
+        <a href="#favorite" class="scroll-link">Fav Player</a>
+    </div>
+
+    <main>
+        <section class="hero-section" id="home">
+            <div class="content-container">
+                <div class="text-content">
+                    <h1>Hi, I'm <span class="highlight">Nathan</span></h1>
+                    <p class="role">
+                        <span id="role-text"></span>
+                    </p>
+                    <p class="description">
+                        Saya Nathan aka Rung-Jo-Nathan yaa..begitulah kira kira orang manggil. saya memiliki beberapa hobi yaitu mancing, game, baca manwha, dan tidur, aku juga suka hewan, kamu mau jadi hewanku? btw jangan lupa follow media sosial di bawah, makasih
+
+                    <div class="social-icons">
+                        <a href="https://open.spotify.com/playlist/1jYaONXqop6RQoDfJv4dmu?si=7OfhrYttR4Sj9ihcj3rexg"><i class="fab fa-spotify"></i></a>
+                        <a href="https://discord.com/users/1439645861402640495/"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.instagram.com/rungchzq_/?igsh=NGJ1Y3Q5ZnE0bG0w#"><i class="fab fa-instagram"></i></a>
+                        
+                    </div>
+
+                    <a href="#about" class="btn-explore scroll-link">Explore More</a>
+                </div>
+
+                <div class="image-content">
+                    <div class="profile-frame">
+                        <img src="https://i.ibb.co/fYDQHc42/foto-nathann-jpg.jpg" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/0d1212/00ff9c?text=Nathan+Photo';"
+                            alt="Profile Picture of Nathan">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="section-divider animate-on-scroll"></div>
+
+        <section class="about-section" id="about">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">About Me</h2>
+                <div class="about-content">
+                    
+                    <div class="about-image animate-on-scroll">
+                        <img src="https://i.ibb.co/fYDQHc42/foto-nathann-jpg.jpg" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x500/0d1212/00ff9c?text=Nathan+Illustration';"
+                            alt="Nathan Illustration">
+                    </div>
+
+                    <div class="about-details animate-on-scroll">
+                        <h2>My Interests & Hobbies</h2>
+                        <p>
+                            Hobi dan segala aktivitas saya lo pada jangan ikut ikutan yeeee
+
+                        <div class="skills-grid">
+                            <div class="skill-box" data-skill-level="90">
+                                <span class="skill-bar" style="--skill-level: 90%;"></span>
+                                <span class="skill-info"><i class="fas fa-plane-departure"></i> Traveling</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-box" data-skill-level="95">
+                                <span class="skill-bar" style="--skill-level: 95%;"></span>
+                                <span class="skill-info"><i class="fas fa-gamepad"></i> Games</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-box" data-skill-level="99">
+                                <span class="skill-bar" style="--skill-level: 99%;"></span>
+                                <span class="skill-info"><i class="fas fa-music"></i> Music</span>
+                                <span class="skill-percentage">99%</span>
+                            </div>
+                            <div class="skill-box" data-skill-level="81">
+                                <span class="skill-bar" style="--skill-level: 81%;"></span>
+                                <span class="skill-info"><i class="fas fa-cookie-bite"></i> Ngemil</span>
+                                <span class="skill-percentage">81%</span>
+                            </div>
+                        </div>
+
+                        <button id="play-music-btn" class="btn-music">
+                            <i class="fas fa-play"></i> Play My Fav Music
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <audio id="about-music" src="https://marketingsuper062-arch.github.io/audio1/mp3video.mp3" preload="auto"></audio> 
+        
+        <audio id="charlieputh-music" src="https://marketingsuper062-arch.github.io/audio/idonthing.mp3" preload="auto"></audio>
+        
+        <div class="section-divider favorite-divider animate-on-scroll"></div>
+
+        <section class="favorite-section" id="favorite">
+            <div class="container">
+                <h2 class="section-title fav-title animate-on-scroll">Favorite E-Sports Player</h2>
+                
+                <div class="favorite-content">
+                    
+                    <div class="favorite-details animate-on-scroll">
+                        <h2>Irina Koroleva</h2>
+                        <p>
+                            Atau lebih dikenal Kioway! Dia tuh jago banget main di role Assassin tauu. Ini tuh sebenarnya menu Idol karna aku bingung gak punya idol intens, jadi taruh Kioway ajadeh. Sebenarnya aku aktif di banyak game dari mulai Roblox, Blodstrike, dll tapi untuk menu ini taruh ML aja xixixi. Fun fact aku suka main jungler Assassin karna terinspirasi dia. 
+                    </div>
+
+                    <div class="favorite-image animate-on-scroll">
+                        <div class="drose-frame">
+                            <img src="https://i.pinimg.com/736x/84/71/a7/8471a7955912bfb390b0afbe3646806c.jpg" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/400x500/120d0d/ff003c?text=Derrick+Rose';"
+                                alt="Irina Koroleva">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <div class="bg-shape circle-1"></div>
+    <div class="bg-shape square-1"></div>
+    <div class="bg-shape triangle-1"></div>
+    <div class="bg-shape circle-2"></div>
+    <div class="bg-shape square-2"></div>
+
+    <script>
+        // Logika JavaScript untuk Hamburger Menu, Animasi Ketik, Animasi Scroll, dan Musik (menggunakan link audio)
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = hamburgerBtn.querySelector('i');
+            const playMusicBtn = document.getElementById('play-music-btn');
+            
+            // Dapatkan kedua elemen audio
+            const droseMusic = document.getElementById('charlieputh-music');
+            const aboutMusic = document.getElementById('about-music'); 
+
+            let isAboutMusicPlaying = false;
+            let isDroseMusicPlaying = false;
+
+            // --- Logika Hamburger Menu ---
+            
+            const closeMenuAndResetIcon = () => {
+                mobileMenu.classList.remove('open');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+                body.classList.remove('no-scroll'); 
+            };
+
+            function toggleMenu() {
+                const isOpen = mobileMenu.classList.contains('open');
+                if (isOpen) {
+                    closeMenuAndResetIcon();
+                } else {
+                    mobileMenu.classList.add('open');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                    body.classList.add('no-scroll'); 
+                }
+            }
+
+            hamburgerBtn.addEventListener('click', toggleMenu);
+            const menuLinks = mobileMenu.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenuAndResetIcon);
+            });
+
+            document.addEventListener('click', (event) => {
+                const isClickInsideMenu = mobileMenu.contains(event.target);
+                const isClickOnHamburger = hamburgerBtn.contains(event.target);
+                
+                if (mobileMenu.classList.contains('open') && !isClickInsideMenu && !isClickOnHamburger) {
+                    closeMenuAndResetIcon();
+                }
+            });
+
+            // --- Logika Animasi Ketik (Typewriter) ---
+
+            const roleElement = document.getElementById('role-text');
+            const roles = ["Suka Game", "Hobi mancing", "juga Hobi Traveling"];
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100; 
+            const delayBetweenRoles = 3000; 
+
+            function typeWriter() {
+                const currentRole = roles[roleIndex];
+
+                if (isDeleting) {
+                    roleElement.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50; 
+                } else {
+                    roleElement.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100; 
+                }
+                
+                if (charIndex === 0 && !isDeleting) {
+                    roleElement.classList.add('typing-cursor');
+                }
+                if (charIndex > 0) {
+                     roleElement.classList.add('typing-cursor');
+                }
+
+                if (!isDeleting && charIndex === currentRole.length) {
+                    isDeleting = true;
+                    setTimeout(typeWriter, delayBetweenRoles);
+                    return; 
+                } 
+                else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length; 
+                    typingSpeed = 150; 
+                }
+
+                setTimeout(typeWriter, typingSpeed);
+            }
+
+            typeWriter();
+            
+            
+            // --- Logika Animasi Skill Bar (Hobi) ---
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillBoxes = entry.target.querySelectorAll('.skill-box');
+                        skillBoxes.forEach(box => {
+                            const bar = box.querySelector('.skill-bar');
+                            bar.style.animationPlayState = 'running';
+                        });
+                        skillObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5 
+            });
+            
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                skillObserver.observe(aboutSection);
+            }
+            
+            // --- Logika Animasi Scroll (Animate-On-Scroll) ---
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.2 
+            });
+
+            animateElements.forEach(el => {
+                scrollObserver.observe(el);
+            });
+            
+            
+            // --- Logika Play Musik dengan Audio Link (Kontrol Terpisah) ---
+
+            const stopAllAudio = () => {
+                // Hentikan Charlie-Puth Music
+                if (!droseMusic.paused) {
+                    droseMusic.pause();
+                    droseMusic.currentTime = 0;
+                    isDroseMusicPlaying = false;
+                }
+                // Hentikan About Music
+                if (!aboutMusic.paused) {
+                    aboutMusic.pause();
+                    aboutMusic.currentTime = 0;
+                    isAboutMusicPlaying = false;
+                }
+                 // Reset tombol About Me
+                playMusicBtn.innerHTML = '<i class="fas fa-play"></i> Play My Fav Music';
+            };
+
+
+            // Fungsi untuk mengontrol musik About Me (Button Click)
+            function toggleAboutMusic() {
+                if (isAboutMusicPlaying) {
+                    // Jika sedang main, hentikan hanya About Music (dan biarkan Drose Music tetap berhenti)
+                    aboutMusic.pause();
+                    aboutMusic.currentTime = 0;
+                    isAboutMusicPlaying = false;
+                    playMusicBtn.innerHTML = '<i class="fas fa-play"></i> Play My Fav Music';
+                } else {
+                    // Jika tidak sedang main, hentikan Drose Music, lalu mainkan About Music
+                    if (isDroseMusicPlaying) {
+                        stopAllAudio(); // Hentikan Drose terlebih dahulu
+                    }
+                    
+                    aboutMusic.loop = true; 
+                    aboutMusic.currentTime = 0; 
+                    aboutMusic.play().then(() => {
+                        isAboutMusicPlaying = true;
+                        playMusicBtn.innerHTML = '<i class="fas fa-pause"></i> Playing...';
+                    }).catch(error => {
+                        console.error("Gagal memutar audio About:", error);
+                    });
+                }
+            }
+            
+            // Fungsi untuk memainkan musik Charlie-Puth (Auto-play/Scroll)
+            const playAudioDrose = () => {
+                if (!isDroseMusicPlaying) {
+                    // Hentikan About Music jika sedang main
+                    if (isAboutMusicPlaying) {
+                        stopAllAudio(); // Hentikan About Music dan reset tombol
+                    }
+                    
+                    droseMusic.loop = true; 
+                    droseMusic.currentTime = 0; 
+                    droseMusic.play().then(() => {
+                        isDroseMusicPlaying = true;
+                    }).catch(error => {
+                        console.error("Gagal memutar audio Drose:", error);
+                    });
+                }
+            };
+            
+            // Fungsi untuk menghentikan musik Charlie-Puth saat scroll keluar
+            const stopAudioDrose = () => {
+                if (isDroseMusicPlaying) {
+                    droseMusic.pause();
+                    droseMusic.currentTime = 0;
+                    isDroseMusicPlaying = false;
+                }
+            };
+
+
+            playMusicBtn.addEventListener('click', toggleAboutMusic); 
+
+            // --- Logika Auto-Play Music saat Scroll ke Section Favorite ---
+            
+            const favoriteSection = document.getElementById('favorite');
+            
+            const favMusicObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Jika bagian terlihat, mainkan musik Charlie-Puth
+                        playAudioDrose();
+                    } else {
+                        // Jika bagian hilang dari viewport, hentikan musik Charlie-Puth
+                        stopAudioDrose(); 
+                    }
+                });
+            }, {
+                threshold: 0.5 // Pemicu saat 50% bagian terlihat
+            });
+            
+            if (favoriteSection) {
+                favMusicObserver.observe(favoriteSection);
+            }
+
+        });
+    </script>
+</body>
+</html>
